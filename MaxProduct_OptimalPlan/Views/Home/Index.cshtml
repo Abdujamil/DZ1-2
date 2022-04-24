@@ -1,0 +1,179 @@
+﻿@model MaxProduct_OptimalPlan.Models.InputData
+@using MaxProduct_OptimalPlan.Models;
+@{
+	ViewBag.Title = "Max Product Plan";
+}
+
+
+<form action="/Home/Calc" method="post">
+
+	<div class="tables">
+		<div class="table1">
+			<table>
+				<tr>
+					<th>Наименование мастерских:</th>
+				</tr>
+				<tr>
+					<td>A1</td>
+				</tr>
+				<tr>
+					<td>A2</td>
+				</tr>
+				<tr>
+					<td>A3</td>
+				</tr>
+				<tr>
+					<td>A4</td>
+				</tr>
+				<tr>
+					<td>A5</td>
+				</tr>
+				<tr>
+					<td>Потребности мастерских, тыс. Шт.</td>
+				</tr>
+			</table>
+		</div>
+		<div class="table2">
+			<table>
+				<tr>
+					<th class="noneBorder">Стоимость перевозок:</th>
+				</tr>
+				<tr>
+					<th>B1</th>
+					<th>B2</th>
+					<th>B3</th>
+					<th>B4</th>
+				</tr>
+				<tr>
+					@{
+						for (int i = 0; i < @Model.Workshops.Count; i++)
+						{
+							<td>
+								<input type="number" name="pr[@i][0]" id="pr[@i][0]" value="@Model.Workshops[i].A1_DeliveryCost" />
+							</td>
+						}
+					}
+				</tr>
+				<tr>
+					@{
+						for (int i = 0; i < @Model.Workshops.Count; i++)
+						{
+							<td>
+								<input type="number" name="pr[@i][1]" id="pr[@i][1]" value="@Model.Workshops[i].A2_DeliveryCost" />
+							</td>
+						}
+					}
+				</tr>
+				<tr>
+					@{
+						for (int i = 0; i < @Model.Workshops.Count; i++)
+						{
+							<td>
+								<input type="number" name="pr[@i][2]" id="pr[@i][2]" value="@Model.Workshops[i].A3_DeliveryCost" />
+							</td>
+						}
+					}
+				</tr>
+				<tr>
+					@{
+						for (int i = 0; i < @Model.Workshops.Count; i++)
+						{
+							<td>
+								<input type="number" name="pr[@i][3]" id="pr[@i][3]" value="@Model.Workshops[i].A4_DeliveryCost" />
+							</td>
+						}
+					}
+				</tr>
+				<tr>
+					@{
+						for (int i = 0; i < @Model.Workshops.Count; i++)
+						{
+							<td>
+								<input type="number" name="pr[@i][4]" id="pr[@i][4]" value="@Model.Workshops[i].A5_DeliveryCost" />
+							</td>
+						}
+					}
+				</tr>
+			</table>
+		</div>
+		<div class="table3">
+			<table>
+				<tr></tr>
+				<tr>
+					<th>Мощность заводов, тыс. Шт.</th>
+				</tr>
+				<tr>
+					<td>@Model.A1_output</td>
+				</tr>
+				<tr>
+					<td>@Model.A2_output</td>
+				</tr>
+				<tr>
+					<td>@Model.A3_output</td>
+				</tr>
+				<tr>
+					<td>@Model.A4_output</td>
+				</tr>
+				<tr>
+					<td>@Model.A5_output</td>
+				</tr>
+				<tr>
+					<td></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+
+
+
+	<div class="tables2">
+		<div class="table-res">
+			<table>
+				<tr>
+					<td>Данные</td>
+				</tr>
+				@{ 
+					for(int i = 0; i < 5; i++)
+					{
+						<tr>
+							<td>
+								@(i + 1) 
+							</td>
+						</tr>
+					}
+				}
+			</table>
+		</div>
+
+
+
+		@{
+			for (int i1 = 0; i1 < 4; i1++)
+			{
+				<div class="table-res2">
+					<table>
+						<tr>
+							<td>@(i1 + 1)</td>
+						</tr>
+
+						@{
+							for (int i = 0; i < 5; i++)
+							{
+								<tr>
+									<td>
+										<input name="products[@i1][@i]" id="products[@i1][@i]" type="number" value="@(i1 * 5 + i)" />
+									</td>
+								</tr>
+							}
+						}
+					</table>
+				</div>
+			}
+		}
+	</div>
+
+
+	<input type="submit" value="Посчитать" />
+</form>
+
+
